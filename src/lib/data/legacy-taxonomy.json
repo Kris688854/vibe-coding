@@ -1,0 +1,48 @@
+{
+  "categories": {
+    "chest": {
+      "name": "胸部",
+      "name_en": "Chest",
+      "icon": "💪"
+    },
+    "back": {
+      "name": "背部",
+      "name_en": "Back",
+      "icon": "🔙"
+    },
+    "legs": {
+      "name": "腿部",
+      "name_en": "Legs",
+      "icon": "🦵"
+    },
+    "shoulders": {
+      "name": "肩部",
+      "name_en": "Shoulders",
+      "icon": "🎯"
+    },
+    "arms": {
+      "name": "手臂",
+      "name_en": "Arms",
+      "icon": "💪"
+    },
+    "core": {
+      "name": "核心",
+      "name_en": "Core",
+      "icon": "🎯"
+    }
+  },
+  "difficulties": {
+    "beginner": {
+      "name": "入门",
+      "color": "#2ED573"
+    },
+    "intermediate": {
+      "name": "中级",
+      "color": "#FFA502"
+    },
+    "advanced": {
+      "name": "高级",
+      "color": "#FF4757"
+    }
+  }
+}

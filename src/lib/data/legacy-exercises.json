@@ -1,0 +1,934 @@
+[
+  {
+    "id": "barbell_bench_press",
+    "name": "杠铃平板卧推",
+    "name_en": "Barbell Bench Press",
+    "category": "chest",
+    "difficulty": "intermediate",
+    "equipment": [
+      "杠铃",
+      "卧推凳"
+    ],
+    "description": "经典的胸肌训练动作，主要锻炼中胸肌群。",
+    "muscles": {
+      "primary": [
+        "middle_chest"
+      ],
+      "secondary": [
+        "triceps",
+        "anterior_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "dumbbell_bench_press",
+    "name": "哑铃平板卧推",
+    "name_en": "Dumbbell Bench Press",
+    "category": "chest",
+    "difficulty": "beginner",
+    "equipment": [
+      "哑铃",
+      "卧推凳"
+    ],
+    "description": "相比杠铃卧推，哑铃提供更大的运动幅度。",
+    "muscles": {
+      "primary": [
+        "middle_chest"
+      ],
+      "secondary": [
+        "triceps",
+        "anterior_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "incline_dumbbell_press",
+    "name": "哑铃上斜卧推",
+    "name_en": "Incline Dumbbell Press",
+    "category": "chest",
+    "difficulty": "intermediate",
+    "equipment": [
+      "哑铃",
+      "上斜凳"
+    ],
+    "description": "针对上胸肌群的训练动作。",
+    "muscles": {
+      "primary": [
+        "upper_chest"
+      ],
+      "secondary": [
+        "triceps",
+        "anterior_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "incline_barbell_press",
+    "name": "杠铃上斜卧推",
+    "name_en": "Incline Barbell Press",
+    "category": "chest",
+    "difficulty": "advanced",
+    "equipment": [
+      "杠铃",
+      "上斜凳"
+    ],
+    "description": "上胸肌群的高级训练动作。",
+    "muscles": {
+      "primary": [
+        "upper_chest"
+      ],
+      "secondary": [
+        "triceps",
+        "anterior_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "decline_bench_press",
+    "name": "下斜杠铃卧推",
+    "name_en": "Decline Bench Press",
+    "category": "chest",
+    "difficulty": "advanced",
+    "equipment": [
+      "杠铃",
+      "下斜凳"
+    ],
+    "description": "针对下胸肌群的训练动作。",
+    "muscles": {
+      "primary": [
+        "lower_chest"
+      ],
+      "secondary": [
+        "triceps",
+        "anterior_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "dumbbell_fly",
+    "name": "哑铃飞鸟",
+    "name_en": "Dumbbell Fly",
+    "category": "chest",
+    "difficulty": "intermediate",
+    "equipment": [
+      "哑铃",
+      "平凳"
+    ],
+    "description": "胸肌孤立训练动作，增强胸肌拉伸感。",
+    "muscles": {
+      "primary": [
+        "middle_chest"
+      ],
+      "secondary": [
+        "anterior_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "cable_crossover",
+    "name": "绳索夹胸",
+    "name_en": "Cable Crossover",
+    "category": "chest",
+    "difficulty": "beginner",
+    "equipment": [
+      "龙门架/绳索"
+    ],
+    "description": "通过绳索提供持续张力，雕塑胸肌线条。",
+    "muscles": {
+      "primary": [
+        "middle_chest"
+      ],
+      "secondary": [
+        "anterior_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "push_up",
+    "name": "俯卧撑",
+    "name_en": "Push Up",
+    "category": "chest",
+    "difficulty": "beginner",
+    "equipment": [
+      "自重"
+    ],
+    "description": "经典的自重训练动作，随时随地可做。",
+    "muscles": {
+      "primary": [
+        "middle_chest"
+      ],
+      "secondary": [
+        "triceps",
+        "anterior_deltoid",
+        "abdominals"
+      ]
+    }
+  },
+  {
+    "id": "dips_chest",
+    "name": "双杠臂屈伸(胸)",
+    "name_en": "Chest Dips",
+    "category": "chest",
+    "difficulty": "intermediate",
+    "equipment": [
+      "双杠架"
+    ],
+    "description": "身体前倾可更好刺激下胸肌群。",
+    "muscles": {
+      "primary": [
+        "lower_chest"
+      ],
+      "secondary": [
+        "triceps",
+        "anterior_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "pec_deck",
+    "name": "蝴蝶机夹胸",
+    "name_en": "Pec Deck",
+    "category": "chest",
+    "difficulty": "beginner",
+    "equipment": [
+      "蝴蝶机"
+    ],
+    "description": "固定器械训练，安全有效地孤立胸肌。",
+    "muscles": {
+      "primary": [
+        "middle_chest"
+      ],
+      "secondary": [
+        "anterior_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "pull_up",
+    "name": "引体向上",
+    "name_en": "Pull Up",
+    "category": "back",
+    "difficulty": "intermediate",
+    "equipment": [
+      "单杠"
+    ],
+    "description": "背部王牌动作，宽握主要刺激背阔肌。",
+    "muscles": {
+      "primary": [
+        "latissimus"
+      ],
+      "secondary": [
+        "biceps",
+        "rhomboid",
+        "trapezius"
+      ]
+    }
+  },
+  {
+    "id": "lat_pulldown",
+    "name": "高位下拉",
+    "name_en": "Lat Pulldown",
+    "category": "back",
+    "difficulty": "beginner",
+    "equipment": [
+      "高位下拉器"
+    ],
+    "description": "替代引体向上的入门动作。",
+    "muscles": {
+      "primary": [
+        "latissimus"
+      ],
+      "secondary": [
+        "biceps",
+        "rhomboid"
+      ]
+    }
+  },
+  {
+    "id": "barbell_row",
+    "name": "杠铃划船",
+    "name_en": "Barbell Row",
+    "category": "back",
+    "difficulty": "intermediate",
+    "equipment": [
+      "杠铃"
+    ],
+    "description": "背部厚度训练的基础动作。",
+    "muscles": {
+      "primary": [
+        "latissimus"
+      ],
+      "secondary": [
+        "biceps",
+        "rhomboid",
+        "trapezius",
+        "erector_spinae"
+      ]
+    }
+  },
+  {
+    "id": "dumbbell_row",
+    "name": "单臂哑铃划船",
+    "name_en": "One Arm Dumbbell Row",
+    "category": "back",
+    "difficulty": "beginner",
+    "equipment": [
+      "哑铃"
+    ],
+    "description": "单侧训练可以纠正左右不平衡。",
+    "muscles": {
+      "primary": [
+        "latissimus"
+      ],
+      "secondary": [
+        "biceps",
+        "rhomboid",
+        "trapezius"
+      ]
+    }
+  },
+  {
+    "id": "seated_cable_row",
+    "name": "坐姿划船",
+    "name_en": "Seated Cable Row",
+    "category": "back",
+    "difficulty": "beginner",
+    "equipment": [
+      "划船机/绳索"
+    ],
+    "description": "中背部训练的好动作。",
+    "muscles": {
+      "primary": [
+        "latissimus"
+      ],
+      "secondary": [
+        "biceps",
+        "rhomboid",
+        "trapezius"
+      ]
+    }
+  },
+  {
+    "id": "deadlift",
+    "name": "硬拉",
+    "name_en": "Deadlift",
+    "category": "back",
+    "difficulty": "advanced",
+    "equipment": [
+      "杠铃"
+    ],
+    "description": "全身综合性训练，尤其强化下背和臀部。",
+    "muscles": {
+      "primary": [
+        "erector_spinae",
+        "gluteus"
+      ],
+      "secondary": [
+        "hamstrings",
+        "trapezius",
+        "latissimus",
+        "forearms"
+      ]
+    }
+  },
+  {
+    "id": "t_bar_row",
+    "name": "T杆划船",
+    "name_en": "T-Bar Row",
+    "category": "back",
+    "difficulty": "intermediate",
+    "equipment": [
+      "T杆架"
+    ],
+    "description": "集中刺激背阔肌和斜方肌。",
+    "muscles": {
+      "primary": [
+        "latissimus"
+      ],
+      "secondary": [
+        "rhomboid",
+        "trapezius",
+        "biceps"
+      ]
+    }
+  },
+  {
+    "id": "face_pull",
+    "name": "面拉",
+    "name_en": "Face Pull",
+    "category": "back",
+    "difficulty": "beginner",
+    "equipment": [
+      "绳索"
+    ],
+    "description": "后束和肩袖肌群训练，预防圆肩。",
+    "muscles": {
+      "primary": [
+        "posterior_deltoid"
+      ],
+      "secondary": [
+        "trapezius",
+        "rhomboid"
+      ]
+    }
+  },
+  {
+    "id": "shrug",
+    "name": "耸肩",
+    "name_en": "Shrug",
+    "category": "back",
+    "difficulty": "beginner",
+    "equipment": [
+      "杠铃/哑铃"
+    ],
+    "description": "专门强化斜方肌上部。",
+    "muscles": {
+      "primary": [
+        "trapezius"
+      ],
+      "secondary": [
+        "rhomboid"
+      ]
+    }
+  },
+  {
+    "id": "barbell_squat",
+    "name": "杠铃深蹲",
+    "name_en": "Barbell Squat",
+    "category": "legs",
+    "difficulty": "intermediate",
+    "equipment": [
+      "杠铃",
+      "深蹲架"
+    ],
+    "description": "腿部训练之王，全身最重要的复合动作。",
+    "muscles": {
+      "primary": [
+        "quadriceps",
+        "gluteus"
+      ],
+      "secondary": [
+        "hamstrings",
+        "erector_spinae",
+        "abdominals"
+      ]
+    }
+  },
+  {
+    "id": "front_squat",
+    "name": "前蹲",
+    "name_en": "Front Squat",
+    "category": "legs",
+    "difficulty": "advanced",
+    "equipment": [
+      "杠铃"
+    ],
+    "description": "更强调股四头肌，对核心要求更高。",
+    "muscles": {
+      "primary": [
+        "quadriceps"
+      ],
+      "secondary": [
+        "gluteus",
+        "abdominals"
+      ]
+    }
+  },
+  {
+    "id": "leg_press",
+    "name": "腿举",
+    "name_en": "Leg Press",
+    "category": "legs",
+    "difficulty": "beginner",
+    "equipment": [
+      "腿举机"
+    ],
+    "description": "安全的大重量腿部训练器械。",
+    "muscles": {
+      "primary": [
+        "quadriceps"
+      ],
+      "secondary": [
+        "gluteus",
+        "hamstrings"
+      ]
+    }
+  },
+  {
+    "id": "leg_extension",
+    "name": "腿伸展",
+    "name_en": "Leg Extension",
+    "category": "legs",
+    "difficulty": "beginner",
+    "equipment": [
+      "腿伸展机"
+    ],
+    "description": "孤立股四头肌的经典动作。",
+    "muscles": {
+      "primary": [
+        "quadriceps"
+      ],
+      "secondary": []
+    }
+  },
+  {
+    "id": "leg_curl",
+    "name": "腿弯举",
+    "name_en": "Leg Curl",
+    "category": "legs",
+    "difficulty": "beginner",
+    "equipment": [
+      "腿弯举机"
+    ],
+    "description": "孤立腘绳肌，改善腿部前后平衡。",
+    "muscles": {
+      "primary": [
+        "hamstrings"
+      ],
+      "secondary": [
+        "gluteus"
+      ]
+    }
+  },
+  {
+    "id": "romanian_deadlift",
+    "name": "罗马尼亚硬拉",
+    "name_en": "Romanian Deadlift",
+    "category": "legs",
+    "difficulty": "intermediate",
+    "equipment": [
+      "杠铃/哑铃"
+    ],
+    "description": "腘绳肌和臀大肌的专项训练。",
+    "muscles": {
+      "primary": [
+        "hamstrings",
+        "gluteus"
+      ],
+      "secondary": [
+        "erector_spinae"
+      ]
+    }
+  },
+  {
+    "id": "lunge",
+    "name": "弓步蹲",
+    "name_en": "Lunge",
+    "category": "legs",
+    "difficulty": "intermediate",
+    "equipment": [
+      "哑铃/自重"
+    ],
+    "description": "单腿训练，增强平衡和稳定性。",
+    "muscles": {
+      "primary": [
+        "quadriceps",
+        "gluteus"
+      ],
+      "secondary": [
+        "hamstrings",
+        "abdominals"
+      ]
+    }
+  },
+  {
+    "id": "calf_raise",
+    "name": "提踵",
+    "name_en": "Calf Raise",
+    "category": "legs",
+    "difficulty": "beginner",
+    "equipment": [
+      "提踵机/杠铃"
+    ],
+    "description": "小腿肌群的专项训练。",
+    "muscles": {
+      "primary": [
+        "calves"
+      ],
+      "secondary": []
+    }
+  },
+  {
+    "id": "overhead_press",
+    "name": "站姿推举",
+    "name_en": "Overhead Press",
+    "category": "shoulders",
+    "difficulty": "intermediate",
+    "equipment": [
+      "杠铃"
+    ],
+    "description": "肩部最基础的复合动作。",
+    "muscles": {
+      "primary": [
+        "anterior_deltoid",
+        "lateral_deltoid"
+      ],
+      "secondary": [
+        "triceps",
+        "trapezius"
+      ]
+    }
+  },
+  {
+    "id": "dumbbell_shoulder_press",
+    "name": "哑铃推举",
+    "name_en": "Dumbbell Shoulder Press",
+    "category": "shoulders",
+    "difficulty": "intermediate",
+    "equipment": [
+      "哑铃"
+    ],
+    "description": "比杠铃有更大的运动幅度。",
+    "muscles": {
+      "primary": [
+        "anterior_deltoid",
+        "lateral_deltoid"
+      ],
+      "secondary": [
+        "triceps",
+        "trapezius"
+      ]
+    }
+  },
+  {
+    "id": "lateral_raise",
+    "name": "侧平举",
+    "name_en": "Lateral Raise",
+    "category": "shoulders",
+    "difficulty": "beginner",
+    "equipment": [
+      "哑铃"
+    ],
+    "description": "孤立中束，打造宽肩视觉效果。",
+    "muscles": {
+      "primary": [
+        "lateral_deltoid"
+      ],
+      "secondary": [
+        "anterior_deltoid",
+        "trapezius"
+      ]
+    }
+  },
+  {
+    "id": "front_raise",
+    "name": "前平举",
+    "name_en": "Front Raise",
+    "category": "shoulders",
+    "difficulty": "beginner",
+    "equipment": [
+      "哑铃"
+    ],
+    "description": "强化三角肌前束。",
+    "muscles": {
+      "primary": [
+        "anterior_deltoid"
+      ],
+      "secondary": [
+        "lateral_deltoid"
+      ]
+    }
+  },
+  {
+    "id": "reverse_fly",
+    "name": "俯身飞鸟",
+    "name_en": "Reverse Fly",
+    "category": "shoulders",
+    "difficulty": "intermediate",
+    "equipment": [
+      "哑铃"
+    ],
+    "description": "强化后束，改善肩部前后平衡。",
+    "muscles": {
+      "primary": [
+        "posterior_deltoid"
+      ],
+      "secondary": [
+        "trapezius",
+        "rhomboid"
+      ]
+    }
+  },
+  {
+    "id": "arnold_press",
+    "name": "阿诺德推举",
+    "name_en": "Arnold Press",
+    "category": "shoulders",
+    "difficulty": "intermediate",
+    "equipment": [
+      "哑铃"
+    ],
+    "description": "哑铃推举的变式，旋转过程中刺激整个肩部。",
+    "muscles": {
+      "primary": [
+        "anterior_deltoid",
+        "lateral_deltoid"
+      ],
+      "secondary": [
+        "posterior_deltoid",
+        "triceps"
+      ]
+    }
+  },
+  {
+    "id": "upright_row",
+    "name": "直臂上拉",
+    "name_en": "Upright Row",
+    "category": "shoulders",
+    "difficulty": "advanced",
+    "equipment": [
+      "杠铃/哑铃"
+    ],
+    "description": "同时刺激中束和斜方肌。",
+    "muscles": {
+      "primary": [
+        "lateral_deltoid",
+        "trapezius"
+      ],
+      "secondary": [
+        "biceps"
+      ]
+    }
+  },
+  {
+    "id": "barbell_curl",
+    "name": "杠铃弯举",
+    "name_en": "Barbell Curl",
+    "category": "arms",
+    "difficulty": "beginner",
+    "equipment": [
+      "杠铃"
+    ],
+    "description": "肱二头肌的基础训练动作。",
+    "muscles": {
+      "primary": [
+        "biceps"
+      ],
+      "secondary": [
+        "forearms",
+        "brachialis"
+      ]
+    }
+  },
+  {
+    "id": "dumbbell_curl",
+    "name": "哑铃弯举",
+    "name_en": "Dumbbell Curl",
+    "category": "arms",
+    "difficulty": "beginner",
+    "equipment": [
+      "哑铃"
+    ],
+    "description": "可单手训练，纠正力量不平衡。",
+    "muscles": {
+      "primary": [
+        "biceps"
+      ],
+      "secondary": [
+        "forearms"
+      ]
+    }
+  },
+  {
+    "id": "hammer_curl",
+    "name": "锤式弯举",
+    "name_en": "Hammer Curl",
+    "category": "arms",
+    "difficulty": "beginner",
+    "equipment": [
+      "哑铃"
+    ],
+    "description": "同时锻炼肱肌和肱桡肌。",
+    "muscles": {
+      "primary": [
+        "biceps"
+      ],
+      "secondary": [
+        "forearms"
+      ]
+    }
+  },
+  {
+    "id": "preacher_curl",
+    "name": "牧师凳弯举",
+    "name_en": "Preacher Curl",
+    "category": "arms",
+    "difficulty": "intermediate",
+    "equipment": [
+      "牧师凳",
+      "杠铃/哑铃"
+    ],
+    "description": "充分孤立肱二头肌顶峰收缩。",
+    "muscles": {
+      "primary": [
+        "biceps"
+      ],
+      "secondary": []
+    }
+  },
+  {
+    "id": "tricep_pushdown",
+    "name": "绳索下压",
+    "name_en": "Tricep Pushdown",
+    "category": "arms",
+    "difficulty": "beginner",
+    "equipment": [
+      "龙门架/绳索"
+    ],
+    "description": "肱三头肌的基础训练动作。",
+    "muscles": {
+      "primary": [
+        "triceps"
+      ],
+      "secondary": []
+    }
+  },
+  {
+    "id": "skull_crusher",
+    "name": "颅骨粉碎者",
+    "name_en": "Skull Crusher",
+    "category": "arms",
+    "difficulty": "intermediate",
+    "equipment": [
+      "杠铃/哑铃",
+      "平板凳"
+    ],
+    "description": "仰卧臂屈伸，充分拉伸长头。",
+    "muscles": {
+      "primary": [
+        "triceps"
+      ],
+      "secondary": []
+    }
+  },
+  {
+    "id": "overhead_tricep_extension",
+    "name": "过头臂屈伸",
+    "name_en": "Overhead Tricep Extension",
+    "category": "arms",
+    "difficulty": "beginner",
+    "equipment": [
+      "哑铃/绳索"
+    ],
+    "description": "针对肱三头肌长头的训练。",
+    "muscles": {
+      "primary": [
+        "triceps"
+      ],
+      "secondary": []
+    }
+  },
+  {
+    "id": "crunch",
+    "name": "卷腹",
+    "name_en": "Crunch",
+    "category": "core",
+    "difficulty": "beginner",
+    "equipment": [
+      "瑜伽垫"
+    ],
+    "description": "经典的腹直肌训练动作。",
+    "muscles": {
+      "primary": [
+        "abdominals"
+      ],
+      "secondary": []
+    }
+  },
+  {
+    "id": "plank",
+    "name": "平板支撑",
+    "name_en": "Plank",
+    "category": "core",
+    "difficulty": "beginner",
+    "equipment": [
+      "瑜伽垫"
+    ],
+    "description": "等长收缩训练核心稳定性。",
+    "muscles": {
+      "primary": [
+        "abdominals"
+      ],
+      "secondary": [
+        "obliques",
+        "erector_spinae"
+      ]
+    }
+  },
+  {
+    "id": "russian_twist",
+    "name": "俄罗斯转体",
+    "name_en": "Russian Twist",
+    "category": "core",
+    "difficulty": "intermediate",
+    "equipment": [
+      "哑铃/药球"
+    ],
+    "description": "强化腹斜肌和核心旋转能力。",
+    "muscles": {
+      "primary": [
+        "obliques"
+      ],
+      "secondary": [
+        "abdominals"
+      ]
+    }
+  },
+  {
+    "id": "leg_raise",
+    "name": "悬垂举腿",
+    "name_en": "Leg Raise",
+    "category": "core",
+    "difficulty": "intermediate",
+    "equipment": [
+      "单杠/支撑架"
+    ],
+    "description": "强化下腹部肌群。",
+    "muscles": {
+      "primary": [
+        "abdominals"
+      ],
+      "secondary": [
+        "obliques"
+      ]
+    }
+  },
+  {
+    "id": "mountain_climber",
+    "name": "登山者",
+    "name_en": "Mountain Climber",
+    "category": "core",
+    "difficulty": "intermediate",
+    "equipment": [
+      "瑜伽垫"
+    ],
+    "description": "结合核心和有氧的训练动作。",
+    "muscles": {
+      "primary": [
+        "abdominals"
+      ],
+      "secondary": [
+        "obliques",
+        "quadriceps"
+      ]
+    }
+  },
+  {
+    "id": "bicycle_crunch",
+    "name": "自行车卷腹",
+    "name_en": "Bicycle Crunch",
+    "category": "core",
+    "difficulty": "beginner",
+    "equipment": [
+      "瑜伽垫"
+    ],
+    "description": "同时锻炼腹直肌和腹斜肌。",
+    "muscles": {
+      "primary": [
+        "abdominals",
+        "obliques"
+      ],
+      "secondary": []
+    }
+  }
+]
