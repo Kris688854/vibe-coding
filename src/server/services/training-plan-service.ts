@@ -2,11 +2,11 @@ import { randomUUID } from "node:crypto";
 import { asc, eq, inArray } from "drizzle-orm";
 import { db } from "@/lib/db/client";
 import {
+  exercises,
   trainingPlanDayExercises,
   trainingPlanDays,
   trainingPlanProfiles,
   trainingPlans,
-  exercises,
 } from "@/lib/db/schema";
 import { getTrainingPlanAiProvider } from "@/lib/ai";
 import type {

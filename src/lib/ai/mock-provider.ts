@@ -30,7 +30,7 @@ function buildReasoning(context: AiNutritionContext) {
 
   return [
     `你的维持热量约为 ${calculation.maintenanceCalories} kcal，目标热量定在 ${calculation.targetCalories} kcal，是按照 ${goalLabel} 目标在维持热量基础上做出的温和调整，既能推进目标，也更容易长期执行。`,
-    `蛋白质设定为 ${calculation.proteinG} g，约等于每公斤体重 ${proteinPerKg.toFixed(1)} g，目的是在控热量或增肌阶段都尽量保住肌肉量、提升恢复速度和饱腹感。`,
+    `蛋白质设定为 ${calculation.proteinG} g，约等于每公斤体重 ${proteinPerKg.toFixed(1)} g，目的是在控热量或增肌阶段都尽量保住肌肉量，提升恢复速度和饱腹感。`,
     `即使是减脂，也不建议把碳水压得过低。你目前安排 ${calculation.carbsG} g 碳水，是为了保证训练表现、日常精神状态和整体依从性，避免因为过低碳水导致暴食或训练质量下滑。`,
     `脂肪安排为 ${calculation.fatG} g，约等于每公斤体重 ${fatPerKg.toFixed(1)} g。脂肪过低会影响激素合成、饱腹感和脂溶性维生素吸收，所以不能一味往下砍。`,
     request.dayType === "training"
@@ -59,7 +59,7 @@ function buildMealPlans(context: AiNutritionContext): AiNutritionContent["mealPl
       ],
       lunch: [
         "一份清蒸鸡腿或番茄牛肉",
-        "两拳头米饭",
+        "两勺米饭",
         "一份清炒时蔬",
         "加一份豆腐或卤蛋补蛋白",
       ],
@@ -92,7 +92,7 @@ function buildMealPlans(context: AiNutritionContext): AiNutritionContent["mealPl
         "鸡胸肉即食包一份",
         "饭团两个或荞麦冷面一份",
         "即食沙拉一盒",
-        "无糖豆浆一瓶",
+        "无糖豆奶一瓶",
       ],
       dinner: [
         "金枪鱼三明治或全麦鸡肉卷一份",

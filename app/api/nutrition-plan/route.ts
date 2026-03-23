@@ -6,19 +6,27 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  const parsed = nutritionPlanRequestSchema.safeParse(body);
+  try {
+    const body = await request.json();
+    const parsed = nutritionPlanRequestSchema.safeParse(body);
 
-  if (!parsed.success) {
+    if (!parsed.success) {
+      return NextResponse.json(
+        {
+          message: "营养规划参数不合法",
+          issues: parsed.error.flatten(),
+        },
+        { status: 400 },
+      );
+    }
+
+    const plan = await createNutritionPlan(parsed.data);
+    return NextResponse.json(plan);
+  } catch (error) {
+    console.error("Failed to create nutrition plan:", error);
     return NextResponse.json(
-      {
-        message: "营养规划参数不合法",
-        issues: parsed.error.flatten(),
-      },
-      { status: 400 },
+      { message: "营养规划生成失败，请稍后再试。" },
+      { status: 500 },
     );
   }
-
-  const plan = await createNutritionPlan(parsed.data);
-  return NextResponse.json(plan);
 }

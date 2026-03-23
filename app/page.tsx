@@ -6,25 +6,25 @@ const cards = [
     href: "/exercises" as Route,
     title: "动作图谱",
     description:
-      "按部位浏览动作库，并在 3D 人体模型上查看主肌群与次肌群的高亮覆盖。",
+      "按训练部位浏览动作库，并在 3D 人体模型上查看主肌群与次肌群高亮覆盖。",
   },
   {
     href: "/nutrition" as Route,
     title: "营养规划",
     description:
-      "输入基础信息后生成结构化的热量、营养素、解释逻辑与日常菜单示例。",
+      "输入基础信息后，生成结构化的热量、营养素、解释逻辑与日常饮食示例。",
   },
   {
     href: "/plan" as Route,
     title: "训练计划",
     description:
-      "根据目标、训练频率、器械条件和限制项生成一周训练安排并保存到数据库。",
+      "根据目标、训练频率、器械条件和限制项生成一周训练安排，并保存到数据库。",
   },
   {
     href: "/history" as Route,
     title: "历史记录",
     description:
-      "集中查看营养方案、训练计划和身体数据，方便复盘和长期追踪。",
+      "集中查看营养方案、训练计划和身体数据，方便复盘与长期追踪。",
   },
   {
     href: "/dashboard" as Route,

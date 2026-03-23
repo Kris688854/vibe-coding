@@ -47,7 +47,7 @@ export function DashboardOverview({ data }: DashboardOverviewProps) {
         </p>
         <h1 className="mt-2 text-3xl font-bold">本周覆盖与近期趋势</h1>
         <p className="mt-3 max-w-3xl text-sm text-slate-200">
-          统一查看最近训练计划带来的肌群覆盖热力、本体重变化，以及近期营养目标的调整趋势。
+          统一查看最近训练计划带来的肌群覆盖热力、体重变化，以及近期营养目标的调整趋势。
         </p>
       </div>
 
@@ -60,7 +60,8 @@ export function DashboardOverview({ data }: DashboardOverviewProps) {
               </p>
               <h2 className="mt-2 text-2xl font-bold">本周肌群覆盖热力图</h2>
               <p className="mt-2 text-sm text-slate-200">
-                当前按最近一次训练计划估算本周刺激。主肌群按 1.0 权重，次肌群按 0.5 权重，并结合动作组数累计为 score。
+                当前按最近一次训练计划估算本周刺激。主肌群按 1.0 权重，次肌群按
+                0.5 权重，并结合动作组数累计成 score。
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -89,7 +90,7 @@ export function DashboardOverview({ data }: DashboardOverviewProps) {
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-slate-300">
                   {data.weeklyHeatmap.planId
-                    ? "当前热力图基于最近一次保存的训练计划生成，用于快速判断本周刺激是否过度集中或遗漏。"
+                    ? "当前热力图基于最近一次保存的训练计划生成，用于快速判断本周刺激是否过度集中或存在遗漏。"
                     : "当前还没有可用于估算覆盖热力的训练计划数据。"}
                 </p>
               </div>
@@ -176,7 +177,9 @@ export function DashboardOverview({ data }: DashboardOverviewProps) {
                         className="w-full rounded-t-[20px] bg-[linear-gradient(180deg,_rgba(249,115,22,0.9),_rgba(251,191,36,0.8))]"
                         style={{ height: `${getBarHeight(item.weightKg, maxWeight)}px` }}
                       />
-                      <div className="text-xs text-slate-400">{formatDate(item.recordedAt)}</div>
+                      <div className="text-xs text-slate-400">
+                        {formatDate(item.recordedAt)}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -237,7 +240,9 @@ export function DashboardOverview({ data }: DashboardOverviewProps) {
                         </h3>
                         <p className="mt-1 text-sm text-slate-500">
                           蛋白质 {item.proteinG} g · {formatGoal(item.goal)}
-                          {item.dayType ? ` · ${item.dayType === "training" ? "训练日" : "休息日"}` : ""}
+                          {item.dayType
+                            ? ` · ${item.dayType === "training" ? "训练日" : "休息日"}`
+                            : ""}
                         </p>
                       </div>
                       <Pill className="bg-white text-slate-600">

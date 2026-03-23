@@ -3,7 +3,7 @@ export const ACTIVITY_LEVEL_OPTIONS = [
   { value: "light", label: "轻度活动" },
   { value: "moderate", label: "中度活动" },
   { value: "active", label: "高频训练" },
-  { value: "very_active", label: "高强度体能" },
+  { value: "very_active", label: "高强度体能活动" },
 ] as const;
 
 export const GOAL_OPTIONS = [
@@ -14,7 +14,7 @@ export const GOAL_OPTIONS = [
 
 export const DIET_PREFERENCE_OPTIONS = [
   { value: "balanced", label: "均衡饮食" },
-  { value: "high_protein", label: "高蛋白偏好" },
+  { value: "high_protein", label: "高蛋白优先" },
   { value: "vegetarian", label: "素食" },
   { value: "low_carb", label: "控碳" },
 ] as const;

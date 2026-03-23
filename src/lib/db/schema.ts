@@ -7,6 +7,7 @@ import {
   sqliteTable,
   text,
 } from "drizzle-orm/sqlite-core";
+import type { TrainingDayType } from "@/features/training-plan/types";
 
 export const muscles = sqliteTable(
   "muscles",
@@ -44,6 +45,18 @@ export const exercises = sqliteTable(
       .$type<string[]>()
       .notNull(),
     equipment: text("equipment", { mode: "json" }).$type<string[]>().notNull(),
+    primaryDays: text("primary_days", { mode: "json" })
+      .$type<TrainingDayType[]>()
+      .notNull()
+      .default(sql`'[]'`),
+    secondaryDays: text("secondary_days", { mode: "json" })
+      .$type<TrainingDayType[]>()
+      .notNull()
+      .default(sql`'[]'`),
+    excludedDays: text("excluded_days", { mode: "json" })
+      .$type<TrainingDayType[]>()
+      .notNull()
+      .default(sql`'[]'`),
     heroMeshKeys: text("hero_mesh_keys", { mode: "json" })
       .$type<string[]>()
       .notNull(),

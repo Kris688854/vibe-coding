@@ -233,7 +233,7 @@ function ViewerCanvas(props: HumanBodyViewerProps) {
           <>
             热力范围：浅橙到深红
             <br />
-            刺激越高，颜色越强
+            刺激越高，颜色越深
           </>
         ) : (
           <>

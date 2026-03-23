@@ -1,124 +1,156 @@
-# 健身工具 - 肌肉训练3D可视化系统
+# FitForge
 
-一个基于 Vue.js + Three.js + FastAPI 的健身工具，可视化展示训练动作的肌肉发力情况。
+一个基于 Next.js App Router 构建的健身训练与营养规划 Web 应用。项目把动作浏览、3D 肌群高亮、营养规划、训练计划生成、历史记录和趋势看板整合到同一套工作流中，适合作为全栈产品演示项目。
 
-## 功能特点
+## 项目简介
 
-- 3D 人体肌肉模型，支持前/后/侧视角切换
-- 旋转、缩放查看模型
-- 选择动作高亮显示主动肌和协同肌
-- 按肌肉群和难度筛选动作
-- 响应式设计，支持移动端
+FitForge 采用“规则优先，AI 补充”的设计思路：
+
+- 动作模块基于肌群关系与 3D 人体模型展示训练部位
+- 营养规划由规则层给出核心数字，AI 层补充解释与可执行菜单
+- 训练计划由规则引擎负责动作结构与约束，AI 只负责 explanation 补充
+- 历史记录与 dashboard 让营养、训练和身体数据形成闭环
+
+## 核心功能
+
+- `/exercises`
+  动作分类浏览、动作详情联动、主次肌群标签、3D 模型高亮
+- `/nutrition`
+  三层输出结构：计算结果、解释逻辑、饮食示例
+- `/plan`
+  规则优先的一周训练计划生成与保存
+- `/history`
+  营养历史、训练历史、身体数据记录
+- `/dashboard`
+  本周肌群覆盖热力图、体重趋势、营养目标趋势
 
 ## 技术栈
 
-- **前端**: Vue.js 3 + Vite + Pinia + Three.js
-- **后端**: FastAPI (Python)
-- **3D渲染**: Three.js
+- Next.js 15 App Router
+- React 19
+- TypeScript
+- Tailwind CSS
+- Drizzle ORM
+- SQLite
+- React Three Fiber + Drei
+- Zod
+- React Hook Form
 
-## 快速启动
+## 页面说明
 
-### Windows
+- `/`
+  首页导航与功能概览
+- `/exercises`
+  左侧分类与动作列表，中间 3D 人体 viewer，右侧动作详情
+- `/nutrition`
+  左侧表单，右侧三层营养结果 tabs
+- `/plan`
+  左侧训练计划输入，右侧周计划详情与 explanation
+- `/history`
+  营养历史、训练历史、身体数据三个 tab
+- `/dashboard`
+  热力图、体重趋势、营养趋势
+
+## 本地运行方式
+
+### 1. 安装依赖
 
 ```bash
-# 双击运行
-start.bat
-```
-
-### Linux / macOS
-
-```bash
-chmod +x start.sh
-./start.sh
-```
-
-### 手动启动
-
-```bash
-# 后端
-cd backend
-pip install -r ../requirements.txt
-uvicorn main:app --reload --port 8000
-
-# 前端 (新终端)
-cd frontend
 npm install
+```
+
+### 2. 配置环境变量
+
+在根目录新建 `.env.local`，至少包含：
+
+```bash
+DATABASE_URL=file:./drizzle/local.db
+```
+
+也可以直接复制 `.env.example` 作为起点。
+
+### 3. 启动开发环境
+
+```bash
 npm run dev
 ```
 
-## 项目结构
+默认访问地址：
 
-```
-fitness-tool/
-├── backend/
-│   ├── main.py              # FastAPI 入口
-│   ├── data/
-│   │   ├── muscles.py       # 肌肉定义 (19个)
-│   │   └── exercises.py     # 动作数据 (45个)
-│   └── routers/
-│       └── api.py           # API 路由
-│
-├── frontend/
-│   ├── src/
-│   │   ├── App.vue          # 主组件
-│   │   ├── main.js          # 入口文件
-│   │   ├── style.css        # 全局样式
-│   │   ├── components/
-│   │   │   ├── MuscleViewer.vue    # 3D 视图
-│   │   │   ├── ExerciseList.vue    # 动作列表
-│   │   │   ├── FilterBar.vue       # 筛选栏
-│   │   │   ├── ExerciseDetail.vue  # 详情面板
-│   │   │   └── MuscleLegend.vue    # 图例
-│   │   ├── stores/
-│   │   │   └── exercise.js  # 状态管理
-│   │   └── three/
-│   │       └── HumanModel.js # 人体模型
-│   └── package.json
-│
-├── requirements.txt
-└── README.md
+- [首页](http://localhost:3000/)
+- [动作页](http://localhost:3000/exercises)
+- [营养页](http://localhost:3000/nutrition)
+- [训练计划页](http://localhost:3000/plan)
+- [历史页](http://localhost:3000/history)
+- [看板页](http://localhost:3000/dashboard)
+
+## 数据库初始化方式
+
+### 1. 生成 migration
+
+```bash
+npm run db:generate
 ```
 
-## API 接口
+### 2. 执行 migration
 
-| 方法 | 路径 | 描述 |
-|------|------|------|
-| GET | `/api/muscles` | 获取所有肌肉定义 |
-| GET | `/api/exercises` | 获取动作列表 |
-| GET | `/api/exercises/{id}` | 获取动作详情 |
-| GET | `/api/categories` | 获取肌肉分类 |
+```bash
+npm run db:migrate
+```
 
-## 肌肉数据
+### 3. 导入 seed 数据
 
-共 19 个肌肉部位：
+```bash
+npm run db:seed
+```
 
-| 分类 | 肌肉 |
-|------|------|
-| 胸部 (3) | 上胸、中胸、下胸 |
-| 背部 (4) | 背阔肌、菱形肌、斜方肌、竖脊肌 |
-| 腿部 (4) | 股四头肌、腘绳肌、臀大肌、小腿 |
-| 肩部 (3) | 三角肌前束、中束、后束 |
-| 手臂 (3) | 肱二头肌、肱三头肌、前臂 |
-| 核心 (2) | 腹直肌、腹斜肌 |
+### 4. 验证训练规则
 
-## 动作数据
+```bash
+npm run verify:training-rules
+```
 
-共 45 个训练动作：
+说明：
 
-| 分类 | 数量 |
-|------|------|
-| 胸部 | 9 |
-| 背部 | 9 |
-| 腿部 | 7 |
-| 肩部 | 7 |
-| 手臂 | 7 |
-| 核心 | 6 |
+- 运行时数据库连接来自 `DATABASE_URL`
+- 当前阶段默认使用本地 SQLite 文件：`file:./drizzle/local.db`
+- `drizzle.config.ts` 在未设置环境变量时也会回退到本地 SQLite
 
-## 使用说明
+## 项目亮点
 
-1. 启动应用后，在左侧选择肌肉群和难度筛选动作
-2. 点击动作名称，在右侧3D视图中查看肌肉发力情况
-3. 主动肌（主要发力）显示高亮
-4. 协同肌（辅助发力）显示较暗高亮
-5. 使用底部按钮切换视角（正面/背面/左侧/右侧）
-6. 鼠标拖拽旋转、滚轮缩放3D模型
+- 动作库 + 3D 高亮
+  主肌群与次肌群会在 glTF 人体模型上实时高亮显示
+- 三层营养输出
+  同时给出核心数字、中文解释、三种日常场景饮食示例
+- 规则优先的训练计划生成
+  训练日有明确允许动作、禁止动作和覆盖校验，避免胸日带弯举、背日带下压
+- 历史记录与 dashboard 联动
+  营养、训练和体重记录可以在 `/history` 和 `/dashboard` 中串联查看
+
+## 当前仓库说明
+
+当前主线应用是仓库根目录这套 Next.js 项目：
+
+- `app/`
+- `src/`
+- `scripts/`
+- `drizzle/`
+
+仓库中仍保留旧时代遗留目录与脚本，但已经归档到 `legacy/`，仅作历史参考，未参与当前构建：
+
+- `legacy/frontend/`
+- `legacy/backend/`
+- `legacy/requirements.txt`
+- `legacy/start.bat`
+- `legacy/start.sh`
+- `legacy/frontend.log`
+- `legacy/backend.log`
+
+后续如果确认不再需要参考这些旧文件，再考虑单独移除。
+
+## 后续规划
+
+- 增加真实 workout logs，而不是只基于最近训练计划估算 dashboard 热力图
+- 接入真实 AI provider，替换当前 mock / stub 实现
+- 增加更完整的测试覆盖，包括规则层和页面交互回归
+- 在真正部署阶段再评估远程数据库与生产环境方案

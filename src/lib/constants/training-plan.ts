@@ -33,4 +33,3 @@ export const RESTRICTION_OPTIONS = [
   { value: "no_deadlift", label: "避免硬拉" },
   { value: "no_overhead_press", label: "避免过头推举" },
 ] as const;
-

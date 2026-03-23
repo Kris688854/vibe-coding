@@ -9,6 +9,29 @@ export type TrainingRestriction =
   | "no_squat"
   | "no_deadlift"
   | "no_overhead_press";
+export type TrainingDayType =
+  | "chest"
+  | "back"
+  | "shoulders"
+  | "arms"
+  | "legs"
+  | "push"
+  | "pull"
+  | "upper"
+  | "lower"
+  | "full_body";
+export type TrainingMuscleTarget =
+  | "chest"
+  | "back"
+  | "shoulders"
+  | "biceps"
+  | "triceps"
+  | "forearms"
+  | "quadriceps"
+  | "hamstrings"
+  | "gluteus"
+  | "calves"
+  | "core";
 
 export type TrainingPlanRequest = {
   goal: TrainingGoal;
@@ -18,6 +41,36 @@ export type TrainingPlanRequest = {
   equipmentAccess: EquipmentAccess;
   sessionDurationMinutes: 45 | 60 | 75 | 90;
   restrictions: TrainingRestriction[];
+};
+
+export type ExerciseDayRuleMetadata = {
+  primaryDays: TrainingDayType[];
+  secondaryDays: TrainingDayType[];
+  excludedDays: TrainingDayType[];
+};
+
+export type TrainingCoverageRule = {
+  targets: TrainingMuscleTarget[];
+  minimum: number;
+  description: string;
+};
+
+export type TrainingDayTemplate = {
+  label: string;
+  focus: string;
+  dayType: TrainingDayType;
+  requiredPrimaryTargets: TrainingMuscleTarget[];
+  allowedSecondaryTargets: TrainingMuscleTarget[];
+  forbiddenTargets: TrainingMuscleTarget[];
+  minCompoundCount: number;
+  minIsolationCount: number;
+  coverageRules: TrainingCoverageRule[];
+};
+
+export type TrainingDayConstraintResult = {
+  isValid: boolean;
+  missingTargets: TrainingMuscleTarget[];
+  reasons: string[];
 };
 
 export type TrainingPlanDayExercise = {

@@ -29,6 +29,9 @@ async function main() {
           description: exercise.description,
           instructions: exercise.instructions,
           equipment: exercise.equipment,
+          primaryDays: exercise.primaryDays,
+          secondaryDays: exercise.secondaryDays,
+          excludedDays: exercise.excludedDays,
           heroMeshKeys: exercise.heroMeshKeys,
         },
       });

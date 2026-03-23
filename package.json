@@ -9,7 +9,8 @@
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:seed": "tsx scripts/seed.ts"
+    "db:seed": "tsx scripts/seed.ts",
+    "verify:training-rules": "tsx scripts/verify-training-rules.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

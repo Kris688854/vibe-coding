@@ -5,9 +5,6 @@ import { useForm } from "react-hook-form";
 import { Pill } from "@/components/ui/pill";
 import type { ExerciseDetail } from "@/features/exercises/types";
 import type {
-  ExperienceLevel,
-  SplitType,
-  TrainingGoal,
   TrainingPlanListItem,
   TrainingPlanRequest,
   TrainingPlanResponse,
@@ -48,6 +45,18 @@ function Field({
   );
 }
 
+async function readErrorMessage(
+  response: Response,
+  fallbackMessage: string,
+): Promise<string> {
+  try {
+    const payload = (await response.json()) as { message?: string };
+    return payload.message ?? fallbackMessage;
+  } catch {
+    return fallbackMessage;
+  }
+}
+
 export function TrainingPlanBuilder({ initialPlans }: BuilderProps) {
   const [plans, setPlans] = useState(initialPlans);
   const [activePlan, setActivePlan] = useState<TrainingPlanResponse | null>(null);
@@ -81,57 +90,94 @@ export function TrainingPlanBuilder({ initialPlans }: BuilderProps) {
   const onSubmit = handleSubmit((values) => {
     setErrorMessage("");
     startTransition(async () => {
-      const response = await fetch("/api/training-plan", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+      try {
+        const response = await fetch("/api/training-plan", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
 
-      if (!response.ok) {
-        const error = await response.json();
-        setErrorMessage(error.message ?? "训练计划生成失败");
-        return;
+        if (!response.ok) {
+          setErrorMessage(
+            await readErrorMessage(
+              response,
+              "训练计划生成失败，请稍后再试。",
+            ),
+          );
+          return;
+        }
+
+        const nextPlan = (await response.json()) as TrainingPlanResponse;
+        setActivePlan(nextPlan);
+        setExpandedDayId(nextPlan.days[0]?.id ?? null);
+        setSelectedExerciseDetail(null);
+
+        const latestPlans = await fetch("/api/training-plans", {
+          cache: "no-store",
+        });
+
+        if (latestPlans.ok) {
+          const list = (await latestPlans.json()) as TrainingPlanListItem[];
+          setPlans(list);
+        }
+      } catch {
+        setErrorMessage("训练计划生成失败，请检查网络或稍后重试。");
       }
-
-      const nextPlan = (await response.json()) as TrainingPlanResponse;
-      setActivePlan(nextPlan);
-      setExpandedDayId(nextPlan.days[0]?.id ?? null);
-
-      const latestPlans = await fetch("/api/training-plans", {
-        cache: "no-store",
-      });
-      const list = (await latestPlans.json()) as TrainingPlanListItem[];
-      setPlans(list);
     });
   });
 
   async function openPlan(planId: string) {
-    startTransition(async () => {
-      const response = await fetch(`/api/training-plans/${planId}`, {
-        cache: "no-store",
-      });
-      if (!response.ok) {
-        return;
-      }
+    setErrorMessage("");
 
-      const plan = (await response.json()) as TrainingPlanResponse;
-      setActivePlan(plan);
-      setExpandedDayId(plan.days[0]?.id ?? null);
+    startTransition(async () => {
+      try {
+        const response = await fetch(`/api/training-plans/${planId}`, {
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          setErrorMessage(
+            await readErrorMessage(
+              response,
+              "训练计划加载失败，请稍后再试。",
+            ),
+          );
+          return;
+        }
+
+        const plan = (await response.json()) as TrainingPlanResponse;
+        setActivePlan(plan);
+        setExpandedDayId(plan.days[0]?.id ?? null);
+        setSelectedExerciseDetail(null);
+      } catch {
+        setErrorMessage("训练计划加载失败，请检查网络或稍后重试。");
+      }
     });
   }
 
   async function openExercise(exerciseId: string) {
-    const response = await fetch(`/api/exercises/${exerciseId}`, {
-      cache: "no-store",
-    });
-    if (!response.ok) {
-      return;
-    }
+    setErrorMessage("");
 
-    const detail = (await response.json()) as ExerciseDetail;
-    setSelectedExerciseDetail(detail);
+    try {
+      const response = await fetch(`/api/exercises/${exerciseId}`, {
+        cache: "no-store",
+      });
+      if (!response.ok) {
+        setErrorMessage(
+          await readErrorMessage(
+            response,
+            "动作详情加载失败，请稍后再试。",
+          ),
+        );
+        return;
+      }
+
+      const detail = (await response.json()) as ExerciseDetail;
+      setSelectedExerciseDetail(detail);
+    } catch {
+      setErrorMessage("动作详情加载失败，请检查网络或稍后重试。");
+    }
   }
 
   return (
@@ -146,7 +192,7 @@ export function TrainingPlanBuilder({ initialPlans }: BuilderProps) {
           </p>
           <h1 className="mt-2 text-3xl font-bold text-ink">一周训练计划生成器</h1>
           <p className="mt-2 text-sm text-slate-500">
-            规则层先排结构和动作，再由 AI 补充解释逻辑，最终结果会保存到数据库。
+            规则层先安排结构和动作，再由 AI 补充解释逻辑，最终结果会保存到数据库。
           </p>
 
           <div className="mt-6 grid gap-4">
@@ -243,7 +289,9 @@ export function TrainingPlanBuilder({ initialPlans }: BuilderProps) {
           </div>
 
           {errorMessage ? (
-            <p className="mt-4 text-sm text-red-500">{errorMessage}</p>
+            <p className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-500">
+              {errorMessage}
+            </p>
           ) : null}
 
           <button
@@ -293,7 +341,7 @@ export function TrainingPlanBuilder({ initialPlans }: BuilderProps) {
           </h2>
           <p className="mt-3 max-w-3xl text-sm text-slate-200">
             {activePlan?.summary ??
-              "右侧会展示训练计划标题、摘要、周安排、每日动作，以及这样安排的原因。"}
+              "右侧会展示训练计划标题、摘要、周安排、每天动作，以及这样安排的原因。"}
           </p>
         </div>
 
@@ -352,7 +400,8 @@ export function TrainingPlanBuilder({ initialPlans }: BuilderProps) {
                                       {exercise.name}
                                     </button>
                                     <p className="mt-1 text-sm text-slate-500">
-                                      {exercise.sets} 组 · {exercise.reps} 次 · 休息 {exercise.restSeconds} 秒
+                                      {exercise.sets} 组 · {exercise.reps} 次 · 休息{" "}
+                                      {exercise.restSeconds} 秒
                                     </p>
                                   </div>
                                   <Pill className="bg-orange-50 text-orange-700">
@@ -441,4 +490,3 @@ export function TrainingPlanBuilder({ initialPlans }: BuilderProps) {
     </section>
   );
 }
-

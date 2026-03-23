@@ -75,6 +75,22 @@ function dayTypeLabel(dayType: NutritionDayType) {
   return dayType === "training" ? "训练日" : "休息日";
 }
 
+function sourceLabel(source: NutritionPlanResponse["source"]) {
+  return source === "rules+ai" ? "规则计算 + AI 菜单" : "规则回退";
+}
+
+async function readErrorMessage(
+  response: Response,
+  fallbackMessage: string,
+): Promise<string> {
+  try {
+    const payload = (await response.json()) as { message?: string };
+    return payload.message ?? fallbackMessage;
+  } catch {
+    return fallbackMessage;
+  }
+}
+
 export function NutritionPlanner() {
   const [result, setResult] = useState<NutritionPlanResponse | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -120,24 +136,32 @@ export function NutritionPlanner() {
     };
 
     startTransition(async () => {
-      const response = await fetch("/api/nutrition-plan", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      try {
+        const response = await fetch("/api/nutrition-plan", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
 
-      if (!response.ok) {
-        const error = await response.json();
-        setErrorMessage(error.message ?? "营养规划生成失败");
-        return;
+        if (!response.ok) {
+          setErrorMessage(
+            await readErrorMessage(
+              response,
+              "营养规划生成失败，请稍后再试。",
+            ),
+          );
+          return;
+        }
+
+        const data = (await response.json()) as NutritionPlanResponse;
+        setResult(data);
+        setActiveTab("calculation");
+        setActiveMealPlan("cafeteria");
+      } catch {
+        setErrorMessage("营养规划生成失败，请检查网络或稍后重试。");
       }
-
-      const data = (await response.json()) as NutritionPlanResponse;
-      setResult(data);
-      setActiveTab("calculation");
-      setActiveMealPlan("cafeteria");
     });
   });
 
@@ -160,7 +184,7 @@ export function NutritionPlanner() {
         </p>
 
         <div className="mt-5">
-          <p className="text-sm font-semibold text-slate-700">日类型</p>
+          <p className="text-sm font-semibold text-slate-700">日期类型</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {DAY_TYPE_OPTIONS.map((option) => (
               <label
@@ -255,21 +279,23 @@ export function NutritionPlanner() {
           <Field label="食材禁忌">
             <input
               className={inputClassName}
-              placeholder="例如：牛奶，花生，海鲜"
+              placeholder="例如：牛奶、花生、海鲜"
               {...register("allergiesText")}
             />
           </Field>
           <Field label="额外说明">
             <textarea
               className={`${inputClassName} min-h-[110px] resize-none`}
-              placeholder="例如：晚上训练，希望训练后安排主食；或者工作日主要靠便利店解决。"
+              placeholder="例如：晚上训练，希望训练后安排主餐；或者工作日主要靠便利店解决。"
               {...register("notes")}
             />
           </Field>
         </div>
 
         {errorMessage ? (
-          <p className="mt-4 text-sm text-red-500">{errorMessage}</p>
+          <p className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-500">
+            {errorMessage}
+          </p>
         ) : null}
 
         <button
@@ -298,7 +324,7 @@ export function NutritionPlanner() {
                   {dayTypeLabel(result.dayType)}
                 </Pill>
                 <Pill className="bg-white/15 text-white">
-                  来源：{result.source}
+                  来源：{sourceLabel(result.source)}
                 </Pill>
               </div>
             ) : null}

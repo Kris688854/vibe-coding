@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import type { ReactNode } from "react";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "FitForge",
-  description: "健身动作与饮食规划平台",
+  description: "健身动作、营养规划与训练计划一体化平台",
 };
 
 export default function RootLayout({

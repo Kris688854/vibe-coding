@@ -38,6 +38,18 @@ function formatDate(value: string) {
   return value.slice(0, 10);
 }
 
+async function readErrorMessage(
+  response: Response,
+  fallbackMessage: string,
+): Promise<string> {
+  try {
+    const payload = (await response.json()) as { message?: string };
+    return payload.message ?? fallbackMessage;
+  } catch {
+    return fallbackMessage;
+  }
+}
+
 export function HistoryDashboard({
   initialNutrition,
   initialTraining,
@@ -60,25 +72,39 @@ export function HistoryDashboard({
   async function handleCreateBodyMetric() {
     setErrorMessage("");
     startTransition(async () => {
-      const response = await fetch("/api/body-metrics", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+      try {
+        const response = await fetch("/api/body-metrics", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
 
-      if (!response.ok) {
-        const error = await response.json();
-        setErrorMessage(error.message ?? "新增身体数据失败");
-        return;
+        if (!response.ok) {
+          setErrorMessage(
+            await readErrorMessage(
+              response,
+              "新增身体数据失败，请稍后再试。",
+            ),
+          );
+          return;
+        }
+
+        const latest = await fetch("/api/history/body-metrics", {
+          cache: "no-store",
+        });
+
+        if (!latest.ok) {
+          setErrorMessage("记录已保存，但历史列表刷新失败，请手动刷新页面。");
+          return;
+        }
+
+        const items = (await latest.json()) as BodyMetricRecord[];
+        setBodyMetricItems(items);
+      } catch {
+        setErrorMessage("新增身体数据失败，请检查网络或稍后重试。");
       }
-
-      const latest = await fetch("/api/history/body-metrics", {
-        cache: "no-store",
-      });
-      const items = (await latest.json()) as BodyMetricRecord[];
-      setBodyMetricItems(items);
     });
   }
 
@@ -342,7 +368,9 @@ export function HistoryDashboard({
                 </label>
               </div>
               {errorMessage ? (
-                <p className="mt-4 text-sm text-red-500">{errorMessage}</p>
+                <p className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-500">
+                  {errorMessage}
+                </p>
               ) : null}
               <button
                 type="button"
@@ -389,4 +417,3 @@ export function HistoryDashboard({
     </section>
   );
 }
-

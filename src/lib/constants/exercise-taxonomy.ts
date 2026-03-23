@@ -67,4 +67,3 @@ export const DIFFICULTY_META = {
 
 export type ExerciseCategory = keyof typeof CATEGORY_META;
 export type ExerciseDifficulty = keyof typeof DIFFICULTY_META;
-
